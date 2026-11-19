@@ -11,7 +11,6 @@ npm run dev          # http://localhost:3000
 npm run build        # build de production (pages statiques)
 npm start            # sert le build
 npm run lint && npm run typecheck
-npm run build:preview  # export HTML statique dans out/ (aperçu sans serveur)
 ```
 
 ## Organisation
@@ -67,9 +66,23 @@ témoignages (section masquée tant que la liste est vide).
 - Favicon et icône d'écran d'accueil (`src/app/icon.png`, `apple-icon.png`, `favicon.ico`) : le « K » seul.
 - Idéalement, demander au graphiste une version vectorielle (SVG) du logo : plus nette à toutes les tailles et plus légère.
 
+## Formulaire de devis (`/devis`)
+
+Parcours en 4 étapes ; à l'étape 2, seules les questions des pôles choisis s'affichent.
+`/devis?pole=hydraulique` pré-sélectionne un pôle.
+
+- `src/content/devis.ts` : textes et options
+- `src/lib/devis/schema.ts` : validation Zod, **la même** dans le navigateur et sur le serveur
+- `src/app/devis/actions.ts` : réception (Server Action), contrôles dans cet ordre : limite de débit par IP → champ piège →
+  anti-robot Turnstile → validation → pièces jointes (type vérifié sur le contenu réel du fichier) → e-mail
+- `src/lib/devis/email.ts` : notification interne via Resend, routée par pôle (multi-pôles → coordination), marquée [URGENT] si panne
+
+**Configuration** : copier `.env.example` en `.env.local` et le remplir.
+Sans configuration, en développement, chaque demande s'affiche dans le terminal au lieu d'être envoyée.
+En production, une configuration manquante bloque l'envoi avec un message invitant à appeler.
+
 ## Prochaines étapes
 
 1. Pages pôles (`/expertises/[pole]`) sur un gabarit commun.
-2. Formulaire de devis intelligent (`/devis`) : Server Action + Zod + Turnstile.
-3. Pages légales, sitemap et robots.
-4. Branchement du CMS Payload.
+2. Pages légales (mentions, confidentialité, cookies), sitemap et robots.
+3. Branchement du CMS Payload.

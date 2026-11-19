@@ -15,11 +15,12 @@ const isDev = process.env.NODE_ENV === "development";
 
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""}`,
+  `script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com${isDev ? " 'unsafe-eval'" : ""}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
-  "connect-src 'self'",
+  "connect-src 'self' https://challenges.cloudflare.com",
+  "frame-src https://challenges.cloudflare.com", // widget anti-robot Turnstile
   "media-src 'self'",
   "object-src 'none'",
   "base-uri 'self'",
@@ -39,26 +40,21 @@ const securityHeaders = [
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
 ];
 
-/** PREVIEW_EXPORT=1 : export HTML statique pour l'aperçu en ligne (sans serveur, donc sans en-têtes). */
-const isPreviewExport = process.env.PREVIEW_EXPORT === "1";
-
 const nextConfig: NextConfig = {
-  // Désactivés pour l'export statique d'aperçu (incompatibles avec output: "export").
-  cacheComponents: !isPreviewExport,
-  partialPrefetching: !isPreviewExport,
+  cacheComponents: true,
+  partialPrefetching: true,
   poweredByHeader: false, // ne pas annoncer la techno du serveur
+  experimental: {
+    // Formulaire de devis : 10 Mo de pièces jointes + marge pour l'enveloppe multipart.
+    serverActions: { bodySizeLimit: "11mb" },
+  },
   reactStrictMode: true,
   images: {
     formats: ["image/avif", "image/webp"],
-    ...(isPreviewExport ? { unoptimized: true } : {}),
   },
-  ...(isPreviewExport
-    ? { output: "export" as const, trailingSlash: true }
-    : {
-        async headers() {
-          return [{ source: "/:path*", headers: securityHeaders }];
-        },
-      }),
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
+  },
   turbopack: {
     rules: {
       "*.css": {
