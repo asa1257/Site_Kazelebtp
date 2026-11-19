@@ -14,7 +14,10 @@ export const company = {
   rccm: "CI-ABJ-03-2026-B12-05238", // Registre du commerce et du crédit mobilier
   ncc: "2605214E", // Numéro de compte contribuable (DGI)
   city: "Abidjan, Côte d'Ivoire",
-  address: "[Adresse du siège], Abidjan",
+  address: "Yopougon Maroc, non loin de l'école Rodin, Abidjan",
+  manager: "ZEBIE BI ZAN CHARLEME", // gérant, directeur de la publication
+  capital: "[capital social à compléter] FCFA",
+  host: { name: "[hébergeur à compléter]", address: "[adresse de l'hébergeur]" },
   phoneDisplay: "+225 XX XX XX XX XX", // [à compléter]
   phoneHref: "tel:+2250000000000", // [à compléter]
   emergencyPhoneHref: "tel:+2250000000000", // [à compléter]

@@ -131,9 +131,9 @@ export function CookieBanner() {
 }
 
 /** Lien « Gérer mes cookies » du footer : rouvre le panneau de réglages. */
-export function ManageCookiesButton({ label }: { label: string }) {
+export function ManageCookiesButton({ label, className = "hover:text-ink" }: { label: string; className?: string }) {
   return (
-    <button type="button" className="hover:text-ink" onClick={() => window.dispatchEvent(new Event(OPEN_EVENT))}>
+    <button type="button" className={className} onClick={() => window.dispatchEvent(new Event(OPEN_EVENT))}>
       {label}
     </button>
   );
