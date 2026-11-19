@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* =========================================================
+   KAZELE INFO & BTP — Design system (jetons)
+   Bleu marine (#012c60) et orange (#fd7c00) relevés sur le logo officiel.
+   ========================================================= */
+
+@theme {
+  /* Surfaces */
+  --color-base: #07090d;        /* fond de page, noir profond */
+  --color-surface: #11151c;     /* cartes, header, footer (anthracite) */
+  --color-surface-2: #181e27;   /* survols, champs de formulaire */
+  --color-line: #263040;        /* bordures discrètes */
+
+  /* Marque */
+  --color-navy: #012c60;        /* bleu marine du logo — surfaces, jamais du texte sur noir */
+  --color-navy-deep: #011a3a;
+  --color-electric: #1e90ff;    /* liens, icônes, focus, lueurs */
+  --color-electric-soft: #6cb6ff;
+  --color-orange: #fd7c00;      /* orange du logo — CTA uniquement (+ chiffres clés) */
+  --color-orange-hover: #ff9a33;
+
+  /* Accents par pôle (glow des cartes) */
+  --color-pole-informatique: #1e90ff;
+  --color-pole-construction: #fd7c00;
+  --color-pole-hydraulique: #38bdf8;
+  --color-pole-maintenance: #ffa94d;
+
+  /* Texte (≥ 4,5:1 sur --color-base) */
+  --color-ink: #e8edf3;
+  --color-ink-muted: #9aa5b4;
+  --color-ink-on-orange: #0a0a0a; /* le blanc sur orange échoue au contraste */
+
+  /* Typographie */
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Rayons, ombres, animations */
+  --radius-card: 1.25rem;
+  --shadow-glow-electric: 0 0 40px -8px rgb(30 144 255 / 0.55);
+  --shadow-glow-orange: 0 0 32px -6px rgb(253 124 0 / 0.6);
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-dash: dash 6s linear infinite;
+  --animate-pulse-dot: pulse-dot 2.4s ease-in-out infinite;
+
+  @keyframes dash {
+    to { stroke-dashoffset: -48; }
+  }
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 1; }
+  }
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem; /* ancres sous le header collant */
+  }
+  body {
+    @apply bg-base text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight text-balance;
+  }
+  p { text-wrap: pretty; }
+
+  /* Focus clavier visible partout (WCAG 2.4.7) */
+  :focus-visible {
+    outline: 2px solid var(--color-electric);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  ::selection { background: rgb(30 144 255 / 0.35); }
+}
+
+/* ---------- Utilitaires de marque ---------- */
+@layer components {
+  /* Trame « plan technique » (effet Cyber-BTP) */
+  .bg-blueprint {
+    background-image:
+      linear-gradient(rgb(108 182 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(108 182 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(rgb(108 182 255 / 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(108 182 255 / 0.025) 1px, transparent 1px);
+    background-size: 96px 96px, 96px 96px, 24px 24px, 24px 24px;
+  }
+
+  /* Verre flouté, avec fond opaque de secours */
+  .glass {
+    background: rgb(17 21 28 / 0.92);
+    border: 1px solid rgb(255 255 255 / 0.08);
+  }
+  @supports (backdrop-filter: blur(1px)) {
+    .glass {
+      background: rgb(17 21 28 / 0.55);
+      backdrop-filter: blur(14px) saturate(140%);
+    }
+  }
+
+  /* Texte en dégradé bleu électrique → orange */
+  .text-gradient {
+    background: linear-gradient(90deg, var(--color-electric-soft), var(--color-orange));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* ---------- Apparition au défilement ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal="hidden"] {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  [data-reveal="shown"] {
+    opacity: 1;
+    transform: none;
+    transition: opacity 500ms var(--ease-out-soft), transform 500ms var(--ease-out-soft);
+  }
+}
+
+/* Coupe toutes les animations si l'utilisateur le demande */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
