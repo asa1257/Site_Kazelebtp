@@ -7,6 +7,7 @@ import { checkFiles } from "@/lib/devis/files";
 import { sendQuoteEmail } from "@/lib/devis/email";
 import { flattenErrors, isUrgent, quoteSchema } from "@/lib/devis/schema";
 import { verifyTurnstile } from "@/lib/devis/turnstile";
+import { isQuoteFormEnabled } from "@/lib/devis/enabled";
 import { rateLimit } from "@/lib/rate-limit";
 
 export type QuoteState =
@@ -28,6 +29,9 @@ function newReference() {
  * pour qu'un robot soit arrêté avant toute lecture de fichier ou appel externe.
  */
 export async function submitQuote(_prev: QuoteState, formData: FormData): Promise<QuoteState> {
+  // 0. Formulaire fermé : refus côté serveur aussi (un envoi forgé ne passe pas).
+  if (!isQuoteFormEnabled()) return { status: "error", message: devis.errors.unavailable };
+
   const h = await headers();
   const ip = h.get("cf-connecting-ip") ?? h.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "inconnue";
 
