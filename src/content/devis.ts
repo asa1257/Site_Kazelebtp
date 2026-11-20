@@ -251,6 +251,15 @@ export const devis = {
     },
   },
 
+  // Affiché tant que QUOTE_FORM_ENABLED n'est pas à "true" (autorisation ARTCI en attente).
+  unavailable: {
+    title: "Parlons de votre projet",
+    text: "Notre formulaire de devis en ligne ouvre très prochainement. En attendant, contactez-nous directement : un responsable de pôle étudie votre besoin avec la même attention.",
+    call: "Appeler",
+    whatsapp: "Écrire sur WhatsApp",
+    email: "Envoyer un e-mail",
+  },
+
   success: {
     title: "Merci, votre demande est bien reçue.",
     reference: "Votre référence",
