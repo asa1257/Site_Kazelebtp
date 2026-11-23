@@ -41,8 +41,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  cacheComponents: true,
-  partialPrefetching: true,
+  // Cache Components / PPR désactivés : pas encore entièrement pris en charge par OpenNext sur Cloudflare,
+  // et inutiles ici (toutes les pages sont générées au build).
   poweredByHeader: false, // ne pas annoncer la techno du serveur
   experimental: {
     // Formulaire de devis : 10 Mo de pièces jointes + marge pour l'enveloppe multipart.
@@ -58,3 +58,6 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// Donne accès, en développement local, aux ressources Cloudflare (images, variables) comme en production.
+import("@opennextjs/cloudflare").then((m) => m.initOpenNextCloudflareForDev());

@@ -19,6 +19,9 @@ export function generateStaticParams() {
 }
 
 
+/** Toute autre valeur que les 4 pôles renvoie une vraie 404. */
+export const dynamicParams = false;
+
 const isPole = (v: string): v is PoleId => (POLE_IDS as readonly string[]).includes(v);
 
 export async function generateMetadata({ params }: PageProps<"/expertises/[pole]">): Promise<Metadata> {
