@@ -3,6 +3,11 @@
 	"main": ".open-next/worker.js",
 	"name": "kazele-site",
 	"compatibility_date": "2026-11-23",
+	// Le site n'est servi que sur kazele.ci (www.kazele.ci est redirigé par une règle Cloudflare).
+	// Les adresses provisoires *.workers.dev sont coupées pour éviter un site en double.
+	"workers_dev": false,
+	"preview_urls": false,
+	"routes": [{ "pattern": "kazele.ci", "custom_domain": true }],
 	"compatibility_flags": [
 		"nodejs_compat",
 		"global_fetch_strictly_public"
