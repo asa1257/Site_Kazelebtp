@@ -81,6 +81,21 @@ Parcours en 4 étapes ; à l'étape 2, seules les questions des pôles choisis s
 Sans configuration, en développement, chaque demande s'affiche dans le terminal au lieu d'être envoyée.
 En production, une configuration manquante bloque l'envoi avec un message invitant à appeler.
 
+## Hébergement : Cloudflare Workers (adaptateur OpenNext)
+
+```bash
+npm run preview   # construit et lance le site dans le moteur Cloudflare, en local (http://localhost:8787)
+npm run deploy    # construit et déploie (nécessite `npx wrangler login`)
+```
+
+- `wrangler.jsonc` : configuration du Worker (`kazele-site`). `open-next.config.ts` : cache « static assets »
+  (pages générées au build, sans R2 ni KV).
+- Cache Components / PPR sont désactivés dans `next.config.ts` : pas encore entièrement pris en charge par OpenNext.
+- Déploiement automatique : Cloudflare → Workers & Pages → Créer → Importer un dépôt GitHub,
+  commande de build `npx opennextjs-cloudflare build`, commande de déploiement `npx opennextjs-cloudflare deploy`.
+  Les variables (`QUOTE_FORM_ENABLED`, clés Resend/Turnstile…) se déclarent dans « Variables et secrets »
+  ET dans les variables de build.
+
 ## Prochaines étapes
 
 1. Pages pôles (`/expertises/[pole]`) sur un gabarit commun.

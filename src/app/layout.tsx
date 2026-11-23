@@ -7,8 +7,7 @@ import { Footer } from "@/components/layout/Footer";
 import { CookieBanner } from "@/components/layout/CookieBanner";
 
 export const metadata: Metadata = {
-  // [à remplacer par le domaine définitif]
-  metadataBase: new URL("https://www.kazele.ci"),
+  metadataBase: new URL("https://kazele.ci"),
   title: {
     default: "KAZELE INFO & BTP — Informatique, Construction, Hydraulique, Maintenance",
     template: "%s | KAZELE INFO & BTP",
