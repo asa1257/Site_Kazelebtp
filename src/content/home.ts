@@ -21,7 +21,7 @@ export const company = {
   phoneDisplay: "+225 XX XX XX XX XX", // [à compléter]
   phoneHref: "tel:+2250000000000", // [à compléter]
   emergencyPhoneHref: "tel:+2250000000000", // [à compléter]
-  email: "contact@domaine.ci", // [à compléter]
+  email: "contact@kazele.ci",
   whatsappHref: "https://wa.me/2250000000000", // [à compléter]
   social: {
     linkedin: "#", // [à compléter]
