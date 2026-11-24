@@ -35,7 +35,7 @@ export const mentionsLegales: LegalPage = {
     { h: "Directeur de la publication", p: [`${company.manager}, gérant.`] },
     {
       h: "Hébergement",
-      p: [`Le site est hébergé par ${company.host.name}, ${company.host.address}.`, "Les contenus sont diffusés via le réseau de Cloudflare, Inc., qui assure également la protection du site contre les attaques."],
+      p: [`Le site est hébergé par ${company.host.name}, ${company.host.address}.`, "Le site est servi depuis le réseau mondial de Cloudflare, qui assure également sa protection contre les attaques."],
     },
     {
       h: "Propriété intellectuelle",
