@@ -17,7 +17,7 @@ export const company = {
   address: "Yopougon Maroc, non loin de l'école Rodin, Abidjan",
   manager: "ZEBIE BI ZAN CHARLEME", // gérant, directeur de la publication
   capital: "5 000 000 FCFA",
-  host: { name: "[hébergeur à compléter]", address: "[adresse de l'hébergeur]" },
+  host: { name: "Cloudflare, Inc. (service Cloudflare Workers)", address: "101 Townsend St, San Francisco, CA 94107, États-Unis" },
   // Numéro provisoire, à remplacer par la ligne de l'entreprise dès qu'elle existe.
   phoneDisplay: "+225 05 54 07 39 50",
   phoneHref: "tel:+2250554073950",
