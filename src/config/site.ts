@@ -14,4 +14,4 @@ export const QUOTE_FORM_OPEN = false;
  * Clé de site Cloudflare Turnstile. Elle est PUBLIQUE par nature (elle s'affiche dans le navigateur).
  * La clé secrète correspondante, elle, est dans Cloudflare (TURNSTILE_SECRET_KEY).
  */
-export const TURNSTILE_SITE_KEY = "";
+export const TURNSTILE_SITE_KEY = "0x4AAAAAAGRJfLhwG5a37dgF";
