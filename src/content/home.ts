@@ -16,13 +16,14 @@ export const company = {
   city: "Abidjan, Côte d'Ivoire",
   address: "Yopougon Maroc, non loin de l'école Rodin, Abidjan",
   manager: "ZEBIE BI ZAN CHARLEME", // gérant, directeur de la publication
-  capital: "[capital social à compléter] FCFA",
+  capital: "5 000 000 FCFA",
   host: { name: "[hébergeur à compléter]", address: "[adresse de l'hébergeur]" },
-  phoneDisplay: "+225 XX XX XX XX XX", // [à compléter]
-  phoneHref: "tel:+2250000000000", // [à compléter]
-  emergencyPhoneHref: "tel:+2250000000000", // [à compléter]
+  // Numéro provisoire, à remplacer par la ligne de l'entreprise dès qu'elle existe.
+  phoneDisplay: "+225 05 54 07 39 50",
+  phoneHref: "tel:+2250554073950",
+  emergencyPhoneHref: "tel:+2250554073950",
   email: "contact@kazele.ci",
-  whatsappHref: "https://wa.me/2250000000000", // [à compléter]
+  whatsappHref: "https://wa.me/2250554073950",
   social: {
     linkedin: "#", // [à compléter]
     facebook: "#", // [à compléter]
