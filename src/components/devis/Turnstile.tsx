@@ -2,6 +2,7 @@
 
 import Script from "next/script";
 import { useCallback, useEffect, useRef } from "react";
+import { TURNSTILE_SITE_KEY } from "@/config/site";
 
 type TurnstileApi = {
   render: (el: HTMLElement, opts: Record<string, unknown>) => string;
@@ -13,7 +14,8 @@ declare global {
   }
 }
 
-const SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+// Clé de site : celle de src/config/site.ts, ou NEXT_PUBLIC_TURNSTILE_SITE_KEY pour les tests en local.
+const SITE_KEY = TURNSTILE_SITE_KEY || process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 /**
  * Widget anti-robot Cloudflare Turnstile (sans casse-tête visuel, sans cookie publicitaire).
