@@ -8,6 +8,13 @@
 	"workers_dev": false,
 	"preview_urls": false,
 	"routes": [{ "pattern": "kazele.ci", "custom_domain": true }],
+	// Variables publiques versionnées ici : un déploiement depuis GitHub efface celles saisies à la main
+	// dans le tableau de bord. Les SECRETS (RESEND_API_KEY, TURNSTILE_SECRET_KEY) restent dans
+	// Cloudflare → Paramètres → Variables et secrets, et ne sont jamais dans le dépôt.
+	"vars": {
+		"DEVIS_FROM": "KAZELE Devis <devis@kazele.ci>",
+		"DEVIS_TO_DEFAULT": "contact@kazele.ci"
+	},
 	"compatibility_flags": [
 		"nodejs_compat",
 		"global_fetch_strictly_public"
