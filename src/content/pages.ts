@@ -104,3 +104,23 @@ export const aboutPage = {
     secondary: { label: "Parler de votre projet", href: "/devis" },
   },
 } as const;
+
+export const contactPage = {
+  metaTitle: "Contact",
+  metaDescription: "Contactez KAZELE INFO & BTP à Abidjan : téléphone, WhatsApp, e-mail et adresse du siège à Yopougon Maroc.",
+  eyebrow: "Contact",
+  title: "Parlons de votre projet",
+  intro: "Une question, un besoin, une urgence ? Appelez-nous, écrivez-nous sur WhatsApp ou par e-mail : un membre de l'équipe vous répond.",
+  hours: { label: "Horaires", value: "De 8 h à 17 h" },
+  phone: "Téléphone",
+  whatsapp: { label: "WhatsApp", action: "Écrire sur WhatsApp" },
+  email: "E-mail",
+  address: { label: "Siège", action: "Ouvrir dans Google Maps" },
+  mapsQuery: "Yopougon Maroc, Abidjan, Côte d'Ivoire",
+  quote: {
+    title: "Un projet à chiffrer ?",
+    text: "Décrivez votre besoin : nous visitons le site avant d'établir un devis détaillé.",
+    label: "Demander un devis",
+    href: "/devis",
+  },
+} as const;

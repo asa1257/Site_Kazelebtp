@@ -203,12 +203,11 @@ export const footer = {
     company: "Entreprise",
     contact: "Contact",
   },
+  // Actualités et Carrières : à rajouter quand ces pages auront un contenu réel.
   companyLinks: [
     { label: "À propos", href: "/a-propos" },
     { label: "Réalisations", href: "/realisations" },
     { label: "Engagements", href: "/engagements" },
-    { label: "Actualités", href: "/actualites" },
-    { label: "Carrières", href: "/carrieres" },
     { label: "Contact", href: "/contact" },
   ],
   cta: { label: "Demander un devis", href: "/devis" },
