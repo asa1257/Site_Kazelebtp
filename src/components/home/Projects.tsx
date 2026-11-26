@@ -16,7 +16,8 @@ type Filter = PoleId | "tous";
  * Le filtre est reflété dans l'URL (?pole=hydraulique) pour pouvoir partager un lien filtré,
  * sans recharger la page (history.replaceState) et sans rendre la page dynamique côté serveur.
  */
-export function Projects() {
+export function Projects({ variant = "home" }: { variant?: "home" | "page" }) {
+  const isPage = variant === "page";
   const [filter, setFilter] = useState<Filter>("tous");
 
   // Lecture initiale du filtre dans l'URL, différée hors du rendu.
@@ -40,13 +41,20 @@ export function Projects() {
   const filters: { id: Filter; label: string }[] = [{ id: "tous", label: projects.allLabel }, ...POLE_LIST.map((p) => ({ id: p.id, label: p.label }))];
 
   return (
-    <Section id="realisations" labelledBy="projects-title">
-      <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-        <SectionHeading id="projects-title" eyebrow="Réalisations" title={projects.title} intro={projects.intro} />
-        <Button href={projects.cta.href} variant="ghost" icon={<ArrowRight size={16} />} iconPosition="end" className="self-start lg:self-auto">
-          {projects.cta.label}
-        </Button>
-      </div>
+    <Section id={isPage ? undefined : "realisations"} labelledBy="projects-title" className={isPage ? "bg-blueprint pt-14 sm:pt-20" : undefined}>
+      {isPage ? (
+        <div className="max-w-3xl">
+          <h1 id="projects-title" className="text-4xl leading-tight font-bold sm:text-5xl">{projects.title}</h1>
+          <p className="mt-5 text-lg leading-relaxed text-ink-muted">{projects.intro}</p>
+        </div>
+      ) : (
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+          <SectionHeading id="projects-title" eyebrow="Réalisations" title={projects.title} intro={projects.intro} />
+          <Button href={projects.cta.href} variant="ghost" icon={<ArrowRight size={16} />} iconPosition="end" className="self-start lg:self-auto">
+            {projects.cta.label}
+          </Button>
+        </div>
+      )}
 
       {/* Filtres : boutons à bascule (aria-pressed), utilisables au clavier */}
       <div role="group" aria-label="Filtrer par expertise" className="mt-10 flex flex-wrap gap-2">
@@ -77,7 +85,7 @@ export function Projects() {
         <ul className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {visible.map((p) => (
             <li key={p.slug}>
-              <ProjectCard project={p} />
+              <ProjectCard project={p} headingLevel={isPage ? "h2" : "h3"} />
             </li>
           ))}
         </ul>

@@ -1,4 +1,7 @@
 import type { PoleId } from "@/lib/poles";
+import { realisations } from "./realisations";
+
+export type { Project } from "./realisations";
 
 /**
  * Tous les textes de la page d'accueil, repris du document « Textes page d'accueil ».
@@ -127,65 +130,18 @@ export const synergy = {
   cta: { label: "Parler de votre projet", href: "/devis" },
 };
 
-export type Project = {
-  slug: string;
-  title: string;
-  city: string;
-  year: string;
-  poles: PoleId[];
-  /** Indicateurs mesurés uniquement. */
-  metrics: { label: string; value: string }[];
-  /** true = contenu d'exemple à remplacer : affiché avec un badge visible. */
-  placeholder?: boolean;
-};
-
 export const projects = {
   title: "Nos réalisations, sur le terrain",
-  intro: "Chaque projet est documenté : le besoin de départ, la solution déployée et les résultats mesurés. Filtrez par expertise.",
+  intro: "Quelques chantiers réalisés par notre équipe, en images. Filtrez par expertise.",
   allLabel: "Tous",
-  readMore: "Lire l'étude de cas",
+  readMore: "Voir le chantier",
+  photosLabel: (n: number) => `${n} photo${n > 1 ? "s" : ""}`,
   cta: { label: "Voir toutes les réalisations", href: "/realisations" },
   empty: {
     text: "Nos réalisations dans ce domaine sont en cours de publication. Parlons de votre besoin dès maintenant.",
     cta: { label: "Demander un devis", href: "/devis" },
   },
-  placeholderLabel: "Exemple à remplacer",
-  // EXEMPLES DE STRUCTURE — à remplacer par de vrais projets avant la mise en ligne.
-  items: [
-    {
-      slug: "exemple-immeuble-bureaux",
-      title: "[Immeuble de bureaux]",
-      city: "[Ville]",
-      year: "[Année]",
-      poles: ["construction", "informatique", "maintenance"],
-      metrics: [
-        { label: "Délai", value: "[à mesurer]" },
-        { label: "Surface", value: "[à mesurer]" },
-      ],
-      placeholder: true,
-    },
-    {
-      slug: "exemple-reseau-eau",
-      title: "[Réseau d'adduction d'eau]",
-      city: "[Ville]",
-      year: "[Année]",
-      poles: ["hydraulique"],
-      metrics: [{ label: "Linéaire", value: "[à mesurer]" }],
-      placeholder: true,
-    },
-    {
-      slug: "exemple-reporting-automatise",
-      title: "[Tableau de bord de pilotage automatisé]",
-      city: "[Ville]",
-      year: "[Année]",
-      poles: ["informatique"],
-      metrics: [
-        { label: "Temps gagné", value: "[à mesurer]" },
-        { label: "Utilisateurs", value: "[à mesurer]" },
-      ],
-      placeholder: true,
-    },
-  ] satisfies Project[] as Project[],
+  items: realisations,
 };
 
 export const method = {
