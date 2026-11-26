@@ -111,7 +111,7 @@ export const contactPage = {
   eyebrow: "Contact",
   title: "Parlons de votre projet",
   intro: "Une question, un besoin, une urgence ? Appelez-nous, écrivez-nous sur WhatsApp ou par e-mail : un membre de l'équipe vous répond.",
-  hours: { label: "Horaires", value: "De 8 h à 17 h" },
+  hours: { label: "Horaires", value: "Du lundi au samedi, de 8 h à 17 h" },
   phone: "Téléphone",
   whatsapp: { label: "WhatsApp", action: "Écrire sur WhatsApp" },
   email: "E-mail",
