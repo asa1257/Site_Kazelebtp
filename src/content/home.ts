@@ -27,8 +27,9 @@ export const company = {
   email: "contact@kazele.ci",
   whatsappHref: "https://wa.me/2250586311616",
   social: {
-    linkedin: "#", // [à compléter]
-    facebook: "#", // [à compléter]
+    // Laisser vide tant que le compte n'existe pas : le lien est alors masqué.
+    linkedin: "",
+    facebook: "",
   },
 };
 

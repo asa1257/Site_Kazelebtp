@@ -40,8 +40,8 @@ export function Footer() {
           <li><a href={company.phoneHref} className="hover:text-ink">{company.phoneDisplay}</a></li>
           <li><a href={`mailto:${company.email}`} className="hover:text-ink">{company.email}</a></li>
           <li className="flex gap-4 pt-2">
-            <a href={company.social.linkedin} className="hover:text-ink">LinkedIn</a>
-            <a href={company.social.facebook} className="hover:text-ink">Facebook</a>
+            {company.social.linkedin && <a href={company.social.linkedin} className="hover:text-ink" rel="noopener noreferrer" target="_blank">LinkedIn</a>}
+            {company.social.facebook && <a href={company.social.facebook} className="hover:text-ink" rel="noopener noreferrer" target="_blank">Facebook</a>}
             <a href={company.whatsappHref} className="hover:text-ink" rel="noopener noreferrer" target="_blank">WhatsApp</a>
           </li>
         </FooterColumn>
